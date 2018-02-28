@@ -3,6 +3,8 @@ import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { PlayerService } from '../player.service';
 import { ActivatedRoute,Router, Params } from '@angular/router';
 import { Validators } from '@angular/forms';
+import { DataStorageService } from '../../shared/data-storage.service';
+import { Response } from '@angular/http';
 
 @Component({
   selector: 'app-player-edit',
@@ -24,7 +26,8 @@ export class PlayerEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
               private playerService: PlayerService,
-              private router: Router) {
+              private router: Router,
+            private dataStorageService: DataStorageService) {
 
   }
 
@@ -69,6 +72,12 @@ export class PlayerEditComponent implements OnInit {
       this.playerService.addPlayer(this.playerForm.value);
     }
     this.onCancel();
+    this.dataStorageService.storePlayers()
+      .subscribe(
+      (response: Response) => {
+      console.log(response);
+      }
+);
   }
 
   onAddList() {

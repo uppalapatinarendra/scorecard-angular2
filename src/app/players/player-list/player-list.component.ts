@@ -3,6 +3,10 @@ import { Player } from '../player.model';
 import { Subscription } from 'rxjs/Subscription';
 import { PlayerService } from '../player.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DataStorageService } from '../../shared/data-storage.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-player-list',
@@ -10,12 +14,14 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./player-list.component.css']
 })
 export class PlayerListComponent implements OnInit, OnDestroy {
-  players: Player[];
+
   subscription: Subscription;
+  players:Array<Player>=[];
 
   constructor(private playerService: PlayerService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+            private dataStorage: DataStorageService) {
   }
 
   ngOnInit() {
@@ -35,5 +41,10 @@ export class PlayerListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+  getAllPlayers(){
+    let players=this.dataStorage.getPlayers()
+      
+   }
+ 
 
 }
