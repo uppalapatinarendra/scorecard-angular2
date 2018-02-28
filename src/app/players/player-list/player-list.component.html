@@ -1,0 +1,14 @@
+<div class="row">
+  <div id="top" class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewPlayer()">New Player</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-player
+      *ngFor="let playerEl of players; let i = index"
+      [player]="playerEl"
+      [index]="i"></app-player>
+  </div>
+</div>

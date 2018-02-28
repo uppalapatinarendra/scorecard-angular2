@@ -1,16 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing-module';
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+
+
+
+
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    AppRoutingModule,
+    SharedModule,
+    AuthModule,
+    CoreModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
